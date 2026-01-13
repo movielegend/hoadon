@@ -2,22 +2,6 @@
 <html lang="vi">
 <head>
 <meta charset="UTF-8">
-<table class="no-border" style="margin-bottom:10px;">
-    <tr>
-        <td width="120">
-            <img src="https://i.postimg.cc/G24TNkGf/logo-ML-01.png" 
-                 alt="Logo công ty"
-                 style="max-width:120px;">
-        </td>
-        <td>
-            <strong>CÔNG TY TNHH THƯƠNG MẠI VÀ CÔNG NGHỆ MOVIE LEGEND</strong><br>
-            Địa chỉ: 72 Hồ Linh Quang, P. Văn Miếu Quốc Tử Giám, Hà Nội<br>
-            ĐT: 03594 66666 – 08337 55555<br>
-            Email: movielegend88@gmail.com
-        </td>
-    </tr>
-</table>
-
 <title>Hóa đơn bán hàng</title>
 
 <style>
@@ -60,6 +44,28 @@
         text-align: center;
     }
 
+    /* ===== LOGO CHÌM ===== */
+    .watermark {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        opacity: 0.08;
+        z-index: -1;
+        pointer-events: none;
+    }
+
+    .watermark img {
+        width: 350px;
+    }
+
+    /* ===== CHỈ IN ===== */
+    @media screen {
+        .watermark {
+            display: none;
+        }
+    }
+
     @media print {
         .input-box {
             display: none;
@@ -69,6 +75,26 @@
 </head>
 
 <body>
+
+<!-- ===== LOGO CHÌM GIỮA TRANG ===== -->
+<div class="watermark">
+    <img src="https://i.postimg.cc/G24TNkGf/logo-ML-01.png">
+</div>
+
+<!-- ===== HEADER LOGO + CÔNG TY ===== -->
+<table class="no-border" style="margin-bottom:10px;">
+    <tr>
+        <td width="130">
+            <img src="https://i.postimg.cc/G24TNkGf/logo-ML-01.png" style="max-width:120px;">
+        </td>
+        <td>
+            <strong>CÔNG TY TNHH THƯƠNG MẠI VÀ CÔNG NGHỆ MOVIE LEGEND</strong><br>
+            Địa chỉ: 72 Hồ Linh Quang, P. Văn Miếu Quốc Tử Giám, Hà Nội<br>
+            ĐT: 03594 66666 – 08337 55555<br>
+            Email: movielegend88@gmail.com
+        </td>
+    </tr>
+</table>
 
 <h2 class="text-center">HÓA ĐƠN BÁN HÀNG</h2>
 
@@ -155,6 +181,32 @@
     <tr>
         <td class="text-right"><strong>Tổng thanh toán:</strong></td>
         <td class="text-right" width="200"><strong id="v_tongCong"></strong></td>
+    </tr>
+</table>
+
+<br><br>
+
+<!-- ===== KÝ TÊN ===== -->
+<table class="no-border" style="text-align:center;">
+    <tr>
+        <td style="width:50%; font-style:italic;">
+            Ngày ...... tháng ...... năm ......
+        </td>
+        <td style="width:50%; font-style:italic;">
+            Ngày ...... tháng ...... năm ......
+        </td>
+    </tr>
+    <tr>
+        <td><strong>Người mua hàng</strong></td>
+        <td><strong>Người bán hàng</strong></td>
+    </tr>
+    <tr>
+        <td style="height:80px;"></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>(Ký, ghi rõ họ tên)</td>
+        <td>(Ký, ghi rõ họ tên)</td>
     </tr>
 </table>
 
