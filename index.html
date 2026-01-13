@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<table class="no-border" style="margin-bottom:10px;">
+    <tr>
+        <td width="120">
+            <img src="https://i.postimg.cc/G24TNkGf/logo-ML-01.png" 
+                 alt="Logo công ty"
+                 style="max-width:120px;">
+        </td>
+        <td>
+            <strong>CÔNG TY TNHH THƯƠNG MẠI VÀ CÔNG NGHỆ MOVIE LEGEND</strong><br>
+            Địa chỉ: 72 Hồ Linh Quang, P. Văn Miếu Quốc Tử Giám, Hà Nội<br>
+            ĐT: 03594 66666 – 08337 55555<br>
+            Email: movielegend88@gmail.com
+        </td>
+    </tr>
+</table>
+
+<title>Hóa đơn bán hàng</title>
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        font-size: 14px;
+    }
+
+    input {
+        padding: 5px;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 10px;
+    }
+
+    td, th {
+        border: 1px solid #777;
+        padding: 6px;
+    }
+
+    th {
+        background: #f2f2f2;
+        text-align: center;
+    }
+
+    .no-border td {
+        border: none;
+    }
+
+    .text-right {
+        text-align: right;
+    }
+
+    .text-center {
+        text-align: center;
+    }
+
+    @media print {
+        .input-box {
+            display: none;
+        }
+    }
+</style>
+</head>
+
+<body>
+
+<h2 class="text-center">HÓA ĐƠN BÁN HÀNG</h2>
+
+<!-- ===== FORM NHẬP LIỆU ===== -->
+<div class="input-box">
+    <h3>Nhập thông tin</h3>
+
+    <table class="no-border">
+        <tr>
+            <td>Khách hàng</td>
+            <td><input id="khachHang"></td>
+            <td>SĐT</td>
+            <td><input id="sdt"></td>
+        </tr>
+        <tr>
+            <td>Địa chỉ</td>
+            <td><input id="diaChi"></td>
+            <td>Thanh toán</td>
+            <td><input id="thanhToan"></td>
+        </tr>
+        <tr>
+            <td>Khu vực</td>
+            <td><input id="khuVuc"></td>
+            <td>NVBH</td>
+            <td><input id="nvbh"></td>
+        </tr>
+    </table>
+
+    <h3>Sản phẩm</h3>
+    <table>
+        <tr>
+            <th>Tên hàng</th>
+            <th>ĐVT</th>
+            <th>Số lượng</th>
+            <th>Đơn giá</th>
+        </tr>
+        <tr>
+            <td><input id="tenHang"></td>
+            <td><input id="dvt"></td>
+            <td><input id="soLuong" type="number" value="1"></td>
+            <td><input id="donGia" type="number" value="0"></td>
+        </tr>
+    </table>
+</div>
+
+<hr>
+
+<!-- ===== HÓA ĐƠN HIỂN THỊ ===== -->
+<table class="no-border">
+    <tr>
+        <td>Khách hàng: <strong id="v_khachHang"></strong></td>
+        <td>SĐT: <strong id="v_sdt"></strong></td>
+    </tr>
+    <tr>
+        <td>Địa chỉ: <strong id="v_diaChi"></strong></td>
+        <td>Thanh toán: <strong id="v_thanhToan"></strong></td>
+    </tr>
+    <tr>
+        <td>Khu vực: <strong id="v_khuVuc"></strong></td>
+        <td>NVBH: <strong id="v_nvbh"></strong></td>
+    </tr>
+</table>
+
+<table>
+    <tr>
+        <th>STT</th>
+        <th>Tên hàng</th>
+        <th>ĐVT</th>
+        <th>Số lượng</th>
+        <th>Đơn giá</th>
+        <th>Thành tiền</th>
+    </tr>
+    <tr>
+        <td class="text-center">1</td>
+        <td id="v_tenHang"></td>
+        <td class="text-center" id="v_dvt"></td>
+        <td class="text-center" id="v_soLuong"></td>
+        <td class="text-right" id="v_donGia"></td>
+        <td class="text-right" id="v_thanhTien"></td>
+    </tr>
+</table>
+
+<table class="no-border">
+    <tr>
+        <td class="text-right"><strong>Tổng thanh toán:</strong></td>
+        <td class="text-right" width="200"><strong id="v_tongCong"></strong></td>
+    </tr>
+</table>
+
+<script>
+function update() {
+    let soLuong = Number(soLuongInput.value);
+    let donGia = Number(donGiaInput.value);
+    let thanhTien = soLuong * donGia;
+
+    v_khachHang.innerText = khachHang.value;
+    v_sdt.innerText = sdt.value;
+    v_diaChi.innerText = diaChi.value;
+    v_thanhToan.innerText = thanhToan.value;
+    v_khuVuc.innerText = khuVuc.value;
+    v_nvbh.innerText = nvbh.value;
+
+    v_tenHang.innerText = tenHang.value;
+    v_dvt.innerText = dvt.value;
+    v_soLuong.innerText = soLuong;
+    v_donGia.innerText = donGia.toLocaleString();
+    v_thanhTien.innerText = thanhTien.toLocaleString();
+    v_tongCong.innerText = thanhTien.toLocaleString();
+}
+
+let inputs = document.querySelectorAll("input");
+inputs.forEach(i => i.addEventListener("input", update));
+
+let khachHang = document.getElementById("khachHang");
+let sdt = document.getElementById("sdt");
+let diaChi = document.getElementById("diaChi");
+let thanhToan = document.getElementById("thanhToan");
+let khuVuc = document.getElementById("khuVuc");
+let nvbh = document.getElementById("nvbh");
+
+let tenHang = document.getElementById("tenHang");
+let dvt = document.getElementById("dvt");
+let soLuongInput = document.getElementById("soLuong");
+let donGiaInput = document.getElementById("donGia");
+
+update();
+</script>
+
+</body>
+</html>
