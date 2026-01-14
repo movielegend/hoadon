@@ -71,6 +71,12 @@
             display: none;
         }
     }
+
+    button {
+        padding: 8px 14px;
+        margin-top: 8px;
+        cursor: pointer;
+    }
 </style>
 </head>
 
@@ -124,20 +130,22 @@
     </table>
 
     <h3>Sản phẩm</h3>
-    <table>
+    <table id="inputTable">
         <tr>
             <th>Tên hàng</th>
             <th>ĐVT</th>
             <th>Số lượng</th>
             <th>Đơn giá</th>
         </tr>
-        <tr>
-            <td><input id="tenHang"></td>
-            <td><input id="dvt"></td>
-            <td><input id="soLuong" type="number" value="1"></td>
-            <td><input id="donGia" type="number" value="0"></td>
+        <tr class="input-row">
+            <td><input class="tenHang"></td>
+            <td><input class="dvt"></td>
+            <td><input class="soLuong" type="number" value="1"></td>
+            <td><input class="donGia" type="number" value="0"></td>
         </tr>
     </table>
+
+    <button type="button" onclick="addRow()">➕ Thêm sản phẩm</button>
 </div>
 
 <hr>
@@ -167,14 +175,7 @@
         <th>Đơn giá</th>
         <th>Thành tiền</th>
     </tr>
-    <tr>
-        <td class="text-center">1</td>
-        <td id="v_tenHang"></td>
-        <td class="text-center" id="v_dvt"></td>
-        <td class="text-center" id="v_soLuong"></td>
-        <td class="text-right" id="v_donGia"></td>
-        <td class="text-right" id="v_thanhTien"></td>
-    </tr>
+    <tbody id="billBody"></tbody>
 </table>
 
 <table class="no-border">
@@ -211,10 +212,23 @@
 </table>
 
 <script>
+function addRow(){
+    let table = document.getElementById("inputTable");
+    let row = document.createElement("tr");
+    row.className = "input-row";
+
+    row.innerHTML = `
+        <td><input class="tenHang"></td>
+        <td><input class="dvt"></td>
+        <td><input class="soLuong" type="number" value="1"></td>
+        <td><input class="donGia" type="number" value="0"></td>
+    `;
+    table.appendChild(row);
+
+    row.querySelectorAll("input").forEach(i => i.addEventListener("input", update));
+}
+
 function update() {
-    let soLuong = Number(soLuongInput.value);
-    let donGia = Number(donGiaInput.value);
-    let thanhTien = soLuong * donGia;
 
     v_khachHang.innerText = khachHang.value;
     v_sdt.innerText = sdt.value;
@@ -223,12 +237,34 @@ function update() {
     v_khuVuc.innerText = khuVuc.value;
     v_nvbh.innerText = nvbh.value;
 
-    v_tenHang.innerText = tenHang.value;
-    v_dvt.innerText = dvt.value;
-    v_soLuong.innerText = soLuong;
-    v_donGia.innerText = donGia.toLocaleString();
-    v_thanhTien.innerText = thanhTien.toLocaleString();
-    v_tongCong.innerText = thanhTien.toLocaleString();
+    let rows = document.querySelectorAll(".input-row");
+    let billBody = document.getElementById("billBody");
+    billBody.innerHTML = "";
+
+    let tong = 0;
+
+    rows.forEach((r, idx)=>{
+        let ten = r.querySelector(".tenHang").value;
+        let dvt = r.querySelector(".dvt").value;
+        let sl = Number(r.querySelector(".soLuong").value);
+        let dg = Number(r.querySelector(".donGia").value);
+        let tt = sl * dg;
+
+        tong += tt;
+
+        let tr = document.createElement("tr");
+        tr.innerHTML = `
+            <td class="text-center">${idx+1}</td>
+            <td>${ten}</td>
+            <td class="text-center">${dvt}</td>
+            <td class="text-center">${sl}</td>
+            <td class="text-right">${dg.toLocaleString()}</td>
+            <td class="text-right">${tt.toLocaleString()}</td>
+        `;
+        billBody.appendChild(tr);
+    });
+
+    v_tongCong.innerText = tong.toLocaleString();
 }
 
 let inputs = document.querySelectorAll("input");
@@ -241,10 +277,13 @@ let thanhToan = document.getElementById("thanhToan");
 let khuVuc = document.getElementById("khuVuc");
 let nvbh = document.getElementById("nvbh");
 
-let tenHang = document.getElementById("tenHang");
-let dvt = document.getElementById("dvt");
-let soLuongInput = document.getElementById("soLuong");
-let donGiaInput = document.getElementById("donGia");
+let v_khachHang = document.getElementById("v_khachHang");
+let v_sdt = document.getElementById("v_sdt");
+let v_diaChi = document.getElementById("v_diaChi");
+let v_thanhToan = document.getElementById("v_thanhToan");
+let v_khuVuc = document.getElementById("v_khuVuc");
+let v_nvbh = document.getElementById("v_nvbh");
+let v_tongCong = document.getElementById("v_tongCong");
 
 update();
 </script>
