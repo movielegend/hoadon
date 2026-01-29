@@ -5,287 +5,175 @@
 <title>Hóa đơn bán hàng</title>
 
 <style>
-    body {
-        font-family: Arial, sans-serif;
-        font-size: 14px;
-    }
-
-    input {
-        padding: 5px;
-        width: 100%;
-        box-sizing: border-box;
-    }
-
-    table {
-        width: 100%;
-        border-collapse: collapse;
-        margin-top: 10px;
-    }
-
-    td, th {
-        border: 1px solid #777;
-        padding: 6px;
-    }
-
-    th {
-        background: #f2f2f2;
-        text-align: center;
-    }
-
-    .no-border td {
-        border: none;
-    }
-
-    .text-right {
-        text-align: right;
-    }
-
-    .text-center {
-        text-align: center;
-    }
-
-    /* ===== LOGO CHÌM ===== */
-    .watermark {
-        position: fixed;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        opacity: 0.08;
-        z-index: -1;
-        pointer-events: none;
-    }
-
-    .watermark img {
-        width: 350px;
-    }
-
-    /* ===== CHỈ IN ===== */
-    @media screen {
-        .watermark {
-            display: none;
-        }
-    }
-
-    @media print {
-        .input-box {
-            display: none;
-        }
-    }
-
-    button {
-        padding: 8px 14px;
-        margin-top: 8px;
-        cursor: pointer;
-    }
+    body {font-family: Arial, sans-serif;font-size:14px;}
+    input {padding:5px;width:100%;box-sizing:border-box;}
+    table {width:100%;border-collapse:collapse;margin-top:10px;}
+    td,th {border:1px solid #777;padding:6px;}
+    th {background:#f2f2f2;text-align:center;}
+    .no-border td{border:none;}
+    .text-right{text-align:right;}
+    .text-center{text-align:center;}
+    .watermark{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);opacity:0.08;z-index:-1;pointer-events:none;}
+    .watermark img{width:350px;}
+    @media screen {.watermark{display:none;}}
+    @media print {.input-box{display:none;}}
+    button{padding:8px 14px;margin-top:8px;cursor:pointer;}
 </style>
 </head>
 
 <body>
 
-<!-- ===== LOGO CHÌM GIỮA TRANG ===== -->
 <div class="watermark">
     <img src="https://i.postimg.cc/G24TNkGf/logo-ML-01.png">
 </div>
 
-<!-- ===== HEADER LOGO + CÔNG TY ===== -->
 <table class="no-border" style="margin-bottom:10px;">
-    <tr>
-        <td width="130">
-            <img src="https://i.postimg.cc/G24TNkGf/logo-ML-01.png" style="max-width:120px;">
-        </td>
-        <td>
-            <strong>CÔNG TY TNHH THƯƠNG MẠI VÀ CÔNG NGHỆ MOVIE LEGEND</strong><br>
-            Địa chỉ: 72 Hồ Linh Quang, P. Văn Miếu Quốc Tử Giám, Hà Nội<br>
-            ĐT: 03594 66666 – 08337 55555<br>
-            Email: movielegend88@gmail.com
-        </td>
-    </tr>
+<tr>
+<td width="130"><img src="https://i.postimg.cc/G24TNkGf/logo-ML-01.png" style="max-width:120px;"></td>
+<td>
+<strong>CÔNG TY TNHH THƯƠNG MẠI VÀ CÔNG NGHỆ MOVIE LEGEND</strong><br>
+Địa chỉ: 72 Hồ Linh Quang, P. Văn Miếu Quốc Tử Giám, Hà Nội<br>
+ĐT: 03594 66666 – 08337 55555<br>
+Email: movielegend88@gmail.com
+</td>
+</tr>
 </table>
 
 <h2 class="text-center">HÓA ĐƠN BÁN HÀNG</h2>
 
-<!-- ===== FORM NHẬP LIỆU ===== -->
 <div class="input-box">
-    <h3>Nhập thông tin</h3>
+<h3>Nhập thông tin</h3>
 
-    <table class="no-border">
-        <tr>
-            <td>Khách hàng</td>
-            <td><input id="khachHang"></td>
-            <td>SĐT</td>
-            <td><input id="sdt"></td>
-        </tr>
-        <tr>
-            <td>Địa chỉ</td>
-            <td><input id="diaChi"></td>
-            <td>Thanh toán</td>
-            <td><input id="thanhToan"></td>
-        </tr>
-        <tr>
-            <td>Khu vực</td>
-            <td><input id="khuVuc"></td>
-            <td>NVBH</td>
-            <td><input id="nvbh"></td>
-        </tr>
-    </table>
+<table class="no-border">
+<tr><td>Khách hàng</td><td><input id="khachHang"></td><td>SĐT</td><td><input id="sdt"></td></tr>
+<tr><td>Địa chỉ</td><td><input id="diaChi"></td><td>Thanh toán</td><td><input id="thanhToan"></td></tr>
+<tr><td>Khu vực</td><td><input id="khuVuc"></td><td>NVBH</td><td><input id="nvbh"></td></tr>
+</table>
 
-    <h3>Sản phẩm</h3>
-    <table id="inputTable">
-        <tr>
-            <th>Tên hàng</th>
-            <th>ĐVT</th>
-            <th>Số lượng</th>
-            <th>Đơn giá</th>
-        </tr>
-        <tr class="input-row">
-            <td><input class="tenHang"></td>
-            <td><input class="dvt"></td>
-            <td><input class="soLuong" type="number" value="1"></td>
-            <td><input class="donGia" type="number" value="0"></td>
-        </tr>
-    </table>
+<h3>Sản phẩm</h3>
+<table id="inputTable">
+<tr><th>Tên hàng</th><th>ĐVT</th><th>Số lượng</th><th>Đơn giá</th></tr>
+<tr class="input-row">
+<td><input class="tenHang"></td>
+<td><input class="dvt"></td>
+<td><input class="soLuong" type="number" value="1"></td>
+<td><input class="donGia" type="number" value="0"></td>
+</tr>
+</table>
 
-    <button type="button" onclick="addRow()">➕ Thêm sản phẩm</button>
+<button type="button" onclick="addRow()">➕ Thêm sản phẩm</button><br>
+<button type="button" onclick="exportJSON()">⬇ Xuất file sửa lại</button>
+<input type="file" accept=".json" onchange="importJSON(event)">
 </div>
 
 <hr>
 
-<!-- ===== HÓA ĐƠN HIỂN THỊ ===== -->
 <table class="no-border">
-    <tr>
-        <td>Khách hàng: <strong id="v_khachHang"></strong></td>
-        <td>SĐT: <strong id="v_sdt"></strong></td>
-    </tr>
-    <tr>
-        <td>Địa chỉ: <strong id="v_diaChi"></strong></td>
-        <td>Thanh toán: <strong id="v_thanhToan"></strong></td>
-    </tr>
-    <tr>
-        <td>Khu vực: <strong id="v_khuVuc"></strong></td>
-        <td>NVBH: <strong id="v_nvbh"></strong></td>
-    </tr>
+<tr><td>Khách hàng: <strong id="v_khachHang"></strong></td><td>SĐT: <strong id="v_sdt"></strong></td></tr>
+<tr><td>Địa chỉ: <strong id="v_diaChi"></strong></td><td>Thanh toán: <strong id="v_thanhToan"></strong></td></tr>
+<tr><td>Khu vực: <strong id="v_khuVuc"></strong></td><td>NVBH: <strong id="v_nvbh"></strong></td></tr>
 </table>
 
 <table>
-    <tr>
-        <th>STT</th>
-        <th>Tên hàng</th>
-        <th>ĐVT</th>
-        <th>Số lượng</th>
-        <th>Đơn giá</th>
-        <th>Thành tiền</th>
-    </tr>
-    <tbody id="billBody"></tbody>
+<tr><th>STT</th><th>Tên hàng</th><th>ĐVT</th><th>Số lượng</th><th>Đơn giá</th><th>Thành tiền</th></tr>
+<tbody id="billBody"></tbody>
 </table>
 
 <table class="no-border">
-    <tr>
-        <td class="text-right"><strong>Tổng thanh toán:</strong></td>
-        <td class="text-right" width="200"><strong id="v_tongCong"></strong></td>
-    </tr>
+<tr><td class="text-right"><strong>Tổng thanh toán:</strong></td>
+<td class="text-right" width="200"><strong id="v_tongCong"></strong></td></tr>
 </table>
 
 <br><br>
 
-<!-- ===== KÝ TÊN ===== -->
 <table class="no-border" style="text-align:center;">
-    <tr>
-        <td style="width:50%; font-style:italic;">
-            Ngày ...... tháng ...... năm ......
-        </td>
-        <td style="width:50%; font-style:italic;">
-            Ngày ...... tháng ...... năm ......
-        </td>
-    </tr>
-    <tr>
-        <td><strong>Người mua hàng</strong></td>
-        <td><strong>Người bán hàng</strong></td>
-    </tr>
-    <tr>
-        <td style="height:80px;"></td>
-        <td></td>
-    </tr>
-    <tr>
-        <td>(Ký, ghi rõ họ tên)</td>
-        <td>(Ký, ghi rõ họ tên)</td>
-    </tr>
+<tr><td style="width:50%;font-style:italic;">Ngày ...... tháng ...... năm ......</td>
+<td style="width:50%;font-style:italic;">Ngày ...... tháng ...... năm ......</td></tr>
+<tr><td><strong>Người mua hàng</strong></td><td><strong>Người bán hàng</strong></td></tr>
+<tr><td style="height:80px;"></td><td></td></tr>
+<tr><td>(Ký, ghi rõ họ tên)</td><td>(Ký, ghi rõ họ tên)</td></tr>
 </table>
 
 <script>
 function addRow(){
-    let table = document.getElementById("inputTable");
-    let row = document.createElement("tr");
-    row.className = "input-row";
-
-    row.innerHTML = `
-        <td><input class="tenHang"></td>
-        <td><input class="dvt"></td>
-        <td><input class="soLuong" type="number" value="1"></td>
-        <td><input class="donGia" type="number" value="0"></td>
-    `;
-    table.appendChild(row);
-
-    row.querySelectorAll("input").forEach(i => i.addEventListener("input", update));
+    let row=document.createElement("tr");
+    row.className="input-row";
+    row.innerHTML=`
+    <td><input class="tenHang"></td>
+    <td><input class="dvt"></td>
+    <td><input class="soLuong" type="number" value="1"></td>
+    <td><input class="donGia" type="number" value="0"></td>`;
+    inputTable.appendChild(row);
+    row.querySelectorAll("input").forEach(i=>i.addEventListener("input",update));
 }
 
-function update() {
-
-    v_khachHang.innerText = khachHang.value;
-    v_sdt.innerText = sdt.value;
-    v_diaChi.innerText = diaChi.value;
-    v_thanhToan.innerText = thanhToan.value;
-    v_khuVuc.innerText = khuVuc.value;
-    v_nvbh.innerText = nvbh.value;
-
-    let rows = document.querySelectorAll(".input-row");
-    let billBody = document.getElementById("billBody");
-    billBody.innerHTML = "";
-
-    let tong = 0;
-
-    rows.forEach((r, idx)=>{
-        let ten = r.querySelector(".tenHang").value;
-        let dvt = r.querySelector(".dvt").value;
-        let sl = Number(r.querySelector(".soLuong").value);
-        let dg = Number(r.querySelector(".donGia").value);
-        let tt = sl * dg;
-
-        tong += tt;
-
-        let tr = document.createElement("tr");
-        tr.innerHTML = `
-            <td class="text-center">${idx+1}</td>
-            <td>${ten}</td>
-            <td class="text-center">${dvt}</td>
-            <td class="text-center">${sl}</td>
-            <td class="text-right">${dg.toLocaleString()}</td>
-            <td class="text-right">${tt.toLocaleString()}</td>
-        `;
-        billBody.appendChild(tr);
+function getData(){
+    let data={khachHang:khachHang.value,sdt:sdt.value,diaChi:diaChi.value,thanhToan:thanhToan.value,
+    khuVuc:khuVuc.value,nvbh:nvbh.value,items:[]};
+    document.querySelectorAll(".input-row").forEach(r=>{
+        data.items.push({ten:r.querySelector(".tenHang").value,dvt:r.querySelector(".dvt").value,
+        sl:r.querySelector(".soLuong").value,dg:r.querySelector(".donGia").value});
     });
-
-    v_tongCong.innerText = tong.toLocaleString();
+    return data;
 }
 
-let inputs = document.querySelectorAll("input");
-inputs.forEach(i => i.addEventListener("input", update));
+function setData(data){
+    khachHang.value=data.khachHang||"";sdt.value=data.sdt||"";diaChi.value=data.diaChi||"";
+    thanhToan.value=data.thanhToan||"";khuVuc.value=data.khuVuc||"";nvbh.value=data.nvbh||"";
+    document.querySelectorAll(".input-row").forEach((r,i)=>{if(i>0)r.remove();});
+    if(data.items && data.items.length){
+        let first=document.querySelector(".input-row");
+        first.querySelector(".tenHang").value=data.items[0].ten;
+        first.querySelector(".dvt").value=data.items[0].dvt;
+        first.querySelector(".soLuong").value=data.items[0].sl;
+        first.querySelector(".donGia").value=data.items[0].dg;
+        for(let i=1;i<data.items.length;i++){addRow();
+            let r=document.querySelectorAll(".input-row")[i];
+            r.querySelector(".tenHang").value=data.items[i].ten;
+            r.querySelector(".dvt").value=data.items[i].dvt;
+            r.querySelector(".soLuong").value=data.items[i].sl;
+            r.querySelector(".donGia").value=data.items[i].dg;
+        }
+    }
+    update();
+}
 
-let khachHang = document.getElementById("khachHang");
-let sdt = document.getElementById("sdt");
-let diaChi = document.getElementById("diaChi");
-let thanhToan = document.getElementById("thanhToan");
-let khuVuc = document.getElementById("khuVuc");
-let nvbh = document.getElementById("nvbh");
+function exportJSON(){
+    let blob=new Blob([JSON.stringify(getData(),null,2)],{type:"application/json"});
+    let a=document.createElement("a");
+    a.href=URL.createObjectURL(blob);a.download="hoa-don.json";a.click();
+}
 
-let v_khachHang = document.getElementById("v_khachHang");
-let v_sdt = document.getElementById("v_sdt");
-let v_diaChi = document.getElementById("v_diaChi");
-let v_thanhToan = document.getElementById("v_thanhToan");
-let v_khuVuc = document.getElementById("v_khuVuc");
-let v_nvbh = document.getElementById("v_nvbh");
-let v_tongCong = document.getElementById("v_tongCong");
+function importJSON(e){
+    let file=e.target.files[0];if(!file)return;
+    let reader=new FileReader();
+    reader.onload=()=>setData(JSON.parse(reader.result));
+    reader.readAsText(file);
+}
 
-update();
+function update(){
+    v_khachHang.innerText=khachHang.value;v_sdt.innerText=sdt.value;v_diaChi.innerText=diaChi.value;
+    v_thanhToan.innerText=thanhToan.value;v_khuVuc.innerText=khuVuc.value;v_nvbh.innerText=nvbh.value;
+    billBody.innerHTML="";let tong=0;
+    document.querySelectorAll(".input-row").forEach((r,i)=>{
+        let sl=Number(r.querySelector(".soLuong").value);
+        let dg=Number(r.querySelector(".donGia").value);
+        let tt=sl*dg;tong+=tt;
+        billBody.innerHTML+=`<tr><td class="text-center">${i+1}</td>
+        <td>${r.querySelector(".tenHang").value}</td><td class="text-center">${r.querySelector(".dvt").value}</td>
+        <td class="text-center">${sl}</td><td class="text-right">${dg.toLocaleString()}</td>
+        <td class="text-right">${tt.toLocaleString()}</td></tr>`;
+    });
+    v_tongCong.innerText=tong.toLocaleString();
+    localStorage.setItem("hoaDonAuto",JSON.stringify(getData()));
+}
+
+window.onload=function(){
+    let data=localStorage.getItem("hoaDonAuto");
+    if(data)setData(JSON.parse(data));
+};
+
+document.querySelectorAll("input").forEach(i=>i.addEventListener("input",update));
 </script>
 
 </body>
