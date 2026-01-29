@@ -62,8 +62,12 @@ Email: movielegend88@gmail.com
 </table>
 
 <button type="button" onclick="addRow()">➕ Thêm sản phẩm</button><br>
+
 <button type="button" onclick="exportJSON()">⬇ Xuất file sửa lại</button>
 <input type="file" accept=".json" onchange="importJSON(event)">
+
+<br>
+<button type="button" onclick="resetAll()">🧹 Xóa toàn bộ & làm mới</button>
 </div>
 
 <hr>
@@ -151,6 +155,22 @@ function importJSON(e){
     reader.readAsText(file);
 }
 
+function resetAll(){
+    if(!confirm("Xóa toàn bộ dữ liệu và tạo hóa đơn mới?")) return;
+
+    khachHang.value="";sdt.value="";diaChi.value="";thanhToan.value="";
+    khuVuc.value="";nvbh.value="";
+
+    document.querySelectorAll(".input-row").forEach((r,i)=>{if(i>0)r.remove();});
+    let first=document.querySelector(".input-row");
+    first.querySelector(".tenHang").value="";
+    first.querySelector(".dvt").value="";
+    first.querySelector(".soLuong").value=1;
+    first.querySelector(".donGia").value=0;
+
+    update();
+}
+
 function update(){
     v_khachHang.innerText=khachHang.value;v_sdt.innerText=sdt.value;v_diaChi.innerText=diaChi.value;
     v_thanhToan.innerText=thanhToan.value;v_khuVuc.innerText=khuVuc.value;v_nvbh.innerText=nvbh.value;
@@ -165,13 +185,7 @@ function update(){
         <td class="text-right">${tt.toLocaleString()}</td></tr>`;
     });
     v_tongCong.innerText=tong.toLocaleString();
-    localStorage.setItem("hoaDonAuto",JSON.stringify(getData()));
 }
-
-window.onload=function(){
-    let data=localStorage.getItem("hoaDonAuto");
-    if(data)setData(JSON.parse(data));
-};
 
 document.querySelectorAll("input").forEach(i=>i.addEventListener("input",update));
 </script>
